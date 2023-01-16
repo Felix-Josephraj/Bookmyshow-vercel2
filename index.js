@@ -48,7 +48,7 @@ app.get('/api', async (req, res) => {
 
     // updating the database
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 10; i++) {
       task(i)
     }
 
