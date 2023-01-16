@@ -48,25 +48,45 @@ app.get('/api', async (req, res) => {
 
     // updating the database
 
-    for (let i = 0; i < 10; i++) {
-      task(i)
-    }
+    // for (let i = 0; i < 10; i++) {
+    //   task(i)
+    // }
 
-    function task(i) {
+    let count = 0
+    var intervalId = setInterval(function () {
+      // call your function here
+      count += 1
       const eatBurger = new Item({
-        name: 'Eat burger' + i,
+        name: 'Eat burger' + count,
       })
 
-      setTimeout(function () {
-        Item.insertMany([eatBurger], function (err) {
-          if (err) {
-            console.log(err)
-          } else {
-            console.log('Successfully inserted')
-          }
-        })
-      }, 5000 * i)
-    }
+      Item.insertMany([eatBurger], function (err) {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log('Successfully inserted')
+        }
+      })
+      if (count >= 30) {
+        clearInterval(intervalId)
+      }
+    }, 5000)
+
+    // function task(i) {
+    //   const eatBurger = new Item({
+    //     name: 'Eat burger' + i,
+    //   })
+
+    //   setTimeout(function () {
+    //     Item.insertMany([eatBurger], function (err) {
+    //       if (err) {
+    //         console.log(err)
+    //       } else {
+    //         console.log('Successfully inserted')
+    //       }
+    //     })
+    //   }, 5000 * i)
+    // }
   } catch (err) {
     console.error(err)
     return null
