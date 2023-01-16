@@ -67,7 +67,7 @@ app.get('/api', async (req, res) => {
           console.log('Successfully inserted')
         }
       })
-      if (count >= 30) {
+      if (count >= 5) {
         clearInterval(intervalId)
       }
     }, 5000)
