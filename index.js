@@ -47,16 +47,26 @@ app.get('/api', async (req, res) => {
     // res.send(await page.title());
 
     // updating the database
-    const eatBurger = new Item({
-      name: 'Eat burger',
-    })
-    Item.insertMany([eatBurger], function (err) {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log('Successfully inserted')
-      }
-    })
+
+    for (let i = 0; i < 10; i++) {
+      task(i)
+    }
+
+    function task(i) {
+      const eatBurger = new Item({
+        name: 'Eat burger' + i,
+      })
+
+      setTimeout(function () {
+        Item.insertMany([eatBurger], function (err) {
+          if (err) {
+            console.log(err)
+          } else {
+            console.log('Successfully inserted')
+          }
+        })
+      }, 5000 * i)
+    }
   } catch (err) {
     console.error(err)
     return null
