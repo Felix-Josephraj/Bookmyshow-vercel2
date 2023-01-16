@@ -1,4 +1,20 @@
 const app = require('express')()
+const mongoose = require('mongoose')
+
+// connecting to mongoose
+mongoose.set('strictQuery', false)
+mongoose.connect(
+  'mongodb+srv://felixanderson500:Life1998@atlascluster.2rtpa.mongodb.net/toDoListDB',
+  {
+    useNewUrlParser: true,
+  }
+)
+
+const itemSchema = {
+  name: String,
+}
+
+const Item = mongoose.model('Item', itemSchema)
 
 let chrome = {}
 let puppeteer
@@ -29,11 +45,23 @@ app.get('/api', async (req, res) => {
     let page = await browser.newPage()
     await page.goto('https://www.google.com')
     // res.send(await page.title());
-    res.send('gaas')
+
+    // updating the database
+    const eatBurger = new Item({
+      name: 'Eat burger',
+    })
+    Item.insertMany([eatBurger], function (err) {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log('Successfully inserted')
+      }
+    })
   } catch (err) {
     console.error(err)
     return null
   }
+  res.send('gaas')
 })
 
 app.listen(process.env.PORT || 3000, () => {
