@@ -62,15 +62,15 @@ app.get('/api', async (req, res) => {
 
       Item.insertMany([eatBurger], function (err) {
         if (err) {
-          console.log(err)
+          // console.log(err)
         } else {
-          console.log('Successfully inserted')
+          // console.log('Successfully inserted')
         }
       })
       if (count >= 5) {
         clearInterval(intervalId)
       }
-    }, 5000)
+    }, 30000)
 
     // function task(i) {
     //   const eatBurger = new Item({
