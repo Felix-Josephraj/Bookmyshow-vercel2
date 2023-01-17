@@ -44,8 +44,8 @@ app.get('/api', async (req, res) => {
 
     let page = await browser.newPage()
     await page.goto(
-      'https://www.flipkart.com/'
-      // 'https://in.bookmyshow.com/trichy/cinemas/ramba-ac-dolby-atmos-trichy/RAMB/20230119'
+      // 'https://www.flipkart.com/'
+      'https://in.bookmyshow.com/trichy/cinemas/ramba-ac-dolby-atmos-trichy/RAMB/20230119'
       // 'https://in.bookmyshow.com/trichy/cinemas/la-cinema-maris-complex-rgb-laser-trichy/LATG/20230117'
     )
 
